@@ -1,4 +1,4 @@
-export type JOB = {
+export interface JOB {
   id: number,
   company: string,
   logo: string,
@@ -7,6 +7,7 @@ export type JOB = {
   position: string,
   role: Role,
   level: Level,
+  contract: string,
   postedAt: string,
   location: string,
   languages: Languages[],
