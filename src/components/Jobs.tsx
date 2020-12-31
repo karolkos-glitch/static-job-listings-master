@@ -36,7 +36,9 @@ const Jobs = () => {
         <li><strong>Active Filters:</strong></li>
         {activeFilters.map(filter=> <li key={filter}>{filter} <button onClick={()=>deleteFilter(filter)}>DELETE</button></li>)}
       </ul>
-      {jobs.map(job => <Job key={job.id} activateFilters={setactiveFilters} {...job}/>)}
+      <ul>
+        {jobs.map(job => <Job key={job.id} activateFilters={setactiveFilters} {...job}/>)}
+      </ul>
     </Fragment>
   )
 }
