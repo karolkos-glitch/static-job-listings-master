@@ -1,3 +1,4 @@
+import { url } from 'inspector';
 import React from 'react'
 import { JOB } from '../data'
 
@@ -6,7 +7,6 @@ interface JobProps extends JOB {
 }
 
 const Job : React.FC<JobProps> = (props) => {
-// const { company, new, featured, position, role, level, postedAt, contract, location, languages, tools} = props;
 const filters = [props.role, props.level,...props.languages,...props.tools];
 
 const setFilter = (filter: string) => {
@@ -21,7 +21,11 @@ const setFilter = (filter: string) => {
 
   return (
     <article>
-      <div>
+      <div className="first-row" >
+
+        {/* <img alt={`logo of ${props.company}`} src={`${props.logo}`} /> */}
+      </div>
+      <div className="second-row">
       <ul>
         <li>{props.company}</li>
           {props.new && <li>NEW</li>}
@@ -34,7 +38,7 @@ const setFilter = (filter: string) => {
         <li>{props.location}</li>
       </ul>
       </div>
-      <div>
+      <div className="third-row">
         <ul>
             {filters.map(filter => <li key={filter}><button onClick={()=>setFilter(filter)}>{filter}</button></li>)}
         </ul>
