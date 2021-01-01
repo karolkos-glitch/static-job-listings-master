@@ -1,4 +1,4 @@
-import React, {Fragment} from 'react'
+import React, {Fragment, useEffect} from 'react'
 import Jobs from './Jobs'
 import  { createGlobalStyle } from 'styled-components'
 
@@ -12,13 +12,19 @@ const GlobalStyled = createGlobalStyle`
 ul {
   list-style-type: none;
 }
+
 body {
   background: hsl(180, 52%, 96%);
   font-size: 15px;
+  font-family: sans-serif;
   color:  hsl(180, 14%, 20%);
 }
 `
+
 const App = () => {
+  useEffect(() => {
+    document.title = "static jobs listing master"
+  }, [])
   return (
     <Fragment>
       <GlobalStyled />

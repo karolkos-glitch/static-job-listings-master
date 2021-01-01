@@ -1,16 +1,14 @@
 import React from 'react'
 import { JOB } from '../data'
 import styled from 'styled-components';
-
+import Filter from './utils/Filter';
 
 const StyledJobArticle = styled.article`
   background-color: white;
-  box-shadow: 10% 10% 10% 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   min-height: 100px;
-  border: 2px solid green;
   padding: 0 2rem;
   .job__row {
    
@@ -109,7 +107,7 @@ const setFilter = (filter: string) => {
       </div>
       <div className="job__row second-row">
         <ul className="job__row__filters-list">
-            {filters.map(filter => <li key={filter}><button className="job__row__filters-list__filter"onClick={()=>setFilter(filter)}><strong>{filter}</strong></button></li>)}
+            {filters.map(filter => <li key={filter}><Filter action={setFilter} text={filter}/></li>)}
         </ul>
       </div>
     </StyledJobArticle>

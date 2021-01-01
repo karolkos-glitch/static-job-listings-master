@@ -1,7 +1,38 @@
-import React, {useState, useEffect, Fragment} from 'react'
+import React, {useState, useEffect} from 'react'
 import { JOB } from '../data';
 import jsonDATA from '../data/data.json';
 import Job from './Job';
+import Filter from './utils/Filter'
+import styled from 'styled-components';
+
+const StyledWrap = styled.section`
+max-width: 1190px;
+margin: 0 auto;
+`
+
+const StyledListFilters = styled.ul`
+width: 100%;
+box-shadow: 0 1px 15px hsl(180, 29%, 50%);
+background-color: white;
+padding: .5rem 2rem;
+margin: 0 0 1rem 0;
+display: flex;
+button {
+  margin:0 1rem 0 0;
+}
+`
+
+const StyledListJobs = styled.ul`
+flex-wrap: wrap;
+display: flex;
+.jobs-List {
+  width: 100%;
+  margin: .8rem 0 ;
+  box-shadow: 0 1px 15px hsl(180, 29%, 50%);
+  border-radius: 5px;
+}
+`
+
 
 const jobs_data : JOB[] = JSON.parse(JSON.stringify(jsonDATA));
 
@@ -31,15 +62,15 @@ const Jobs = () => {
    }, [activeFilters])
    
   return (
-    <Fragment>
-      <ul>
-        <li><strong>Active Filters:</strong></li>
-        {activeFilters.map(filter=> <li key={filter}>{filter} <button onClick={()=>deleteFilter(filter)}>DELETE</button></li>)}
-      </ul>
-      <ul>
-        {jobs.map(job => <Job key={job.id} activateFilters={setactiveFilters} {...job}/>)}
-      </ul>
-    </Fragment>
+    <StyledWrap>
+      {activeFilters.length!== 0 && <StyledListFilters>
+        {activeFilters.map(filter=> <li key={filter}><Filter action={deleteFilter} text={filter}/></li>)}
+      </StyledListFilters>
+      }
+      <StyledListJobs>
+        {jobs.map(job => <li className="jobs-List"><Job key={job.id} activateFilters={setactiveFilters} {...job}/></li>)}
+      </StyledListJobs>
+    </StyledWrap>
   )
 }
 
