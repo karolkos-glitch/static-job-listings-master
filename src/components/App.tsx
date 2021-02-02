@@ -1,28 +1,35 @@
-import React, { Fragment } from 'react'
+
+import React, {Fragment, useEffect} from 'react'
 import Jobs from './Jobs'
+import  { createGlobalStyle } from 'styled-components'
 
-import {createGlobalStyle}from 'styled-components';
+const GlobalStyled = createGlobalStyle`
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
 
-const Global = createGlobalStyle`
-  * {
-    padding: inherit;
-    margin: inherit;
-    box-sizing: border-box;
-  }
-  
-  body {
-    padding: 0;
-    margin: 0;
-  }
+ul {
+  list-style-type: none;
+}
 
-  ul,ol {
-    list-style-type: none;
-  }
+body {
+  background: hsl(180, 52%, 96%);
+  font-size: 15px;
+  font-family: sans-serif;
+  color:  hsl(180, 14%, 20%);
+}
 `
 const App = () => {
+  useEffect(() => {
+    document.title = "static jobs listing master"
+  }, [])
   return (
     <Fragment>
-      <Global/>
+
+      <GlobalStyled />
+
       <Jobs />
     </Fragment>
   )
